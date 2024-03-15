@@ -6,4 +6,25 @@
 <h1 class="mb-5">All Movies</h1>
 <p class="mb-3">See our list of movie ratings below</p>
 <!-- TODO: Feature 1 -->
+<table>
+    <thead>
+        <tr>
+            <th>Movie</th>
+            <th>Name</th>
+            <th>Rating</th>
+        </tr>
+        <tbody>
+            {% for elements in the_movie_list %}
+                <form action="">
+                <tr id="{{loop.index}}" class="">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </form>
+            {% endfor %}
+        </tbody>
+    </thead>
+
+</table>
 {% endblock %}

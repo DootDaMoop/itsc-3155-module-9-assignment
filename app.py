@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template
+from flask import Flask, redirect, render_template, request
 
 from src.repositories.movie_repository import get_movie_repository
 
@@ -12,10 +12,11 @@ movie_repository = get_movie_repository()
 def index():
     return render_template('index.html')
 
-
+movie_list = {}
 @app.get('/movies')
 def list_all_movies():
     # TODO: Feature 1
+    get_movie_repository
     return render_template('list_all_movies.html', list_movies_active=True)
 
 
