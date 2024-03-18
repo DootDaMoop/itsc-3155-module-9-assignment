@@ -6,20 +6,21 @@
 <h1 class="mb-5">All Movies</h1>
 <p class="mb-3">See our list of movie ratings below</p>
 <!-- TODO: Feature 1 -->
-<table>
+<table class="table">
     <thead>
         <tr>
-            <th>Movie</th>
-            <th>Name</th>
-            <th>Rating</th>
+            <th scope="col">Title</th>
+            <th scope="col">Director</th>
+            <th scope="col">Rating</th>
         </tr>
         <tbody>
             {% for elements in the_movie_list %}
-                <form action="">
-                <tr id="{{loop.index}}" class="">
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                <form action="{{  url_for( 'get_single_movie', movie_id=the_movie_list[elements].movie_id)  }}" method="get">
+                <tr id="{{loop.index}}">
+                    <td id="movie_title">{{  the_movie_list[elements].title  }}</td>
+                    <td>{{  the_movie_list[elements].director  }}</td>
+                    <td>{{  the_movie_list[elements].rating  }}</td>
+                    <td><button class="btn btn-primary" type="submit">View</button></td>
                 </tr>
                 </form>
             {% endfor %}
