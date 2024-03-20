@@ -1,5 +1,4 @@
 from flask import Flask, redirect, render_template, request, url_for
-
 from src.repositories.movie_repository import get_movie_repository
 
 app = Flask(__name__)
@@ -7,16 +6,16 @@ app = Flask(__name__)
 # Get the movie repository singleton to use throughout the application
 movie_repository = get_movie_repository()
 
-
 @app.get('/')
 def index():
     return render_template('index.html')
 
-
+movie_list = {}
 @app.get('/movies')
 def list_all_movies():
     # TODO: Feature 1
-    return render_template('list_all_movies.html', list_movies_active=True)
+    movie_list = movie_repository.get_all_movies()
+    return render_template('list_all_movies.html', the_movie_list=movie_list)
 
 
 @app.get('/movies/new')
