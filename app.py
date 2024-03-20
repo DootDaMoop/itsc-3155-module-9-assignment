@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template
+from flask import Flask, redirect, render_template, request, url_for
 
 from src.repositories.movie_repository import get_movie_repository
 
@@ -26,9 +26,21 @@ def create_movies_form():
 
 @app.post('/movies')
 def create_movie():
-    # TODO: Feature 2
-    # After creating the movie in the database, we redirect to the list all movies page
-    return redirect('/movies')
+    title = request.form['movieName']
+    director = request.form['movieDirector']
+    rating = request.form['movieRating']
+
+    rating_list = ['1', '2', '3' ,'4', '5']
+
+    if not (title == None or title == '') and not (director == None or director == ''):
+        for rating_check in rating_list:
+            if rating == rating_check:
+                break
+        else:
+            return redirect(f'/movies/new')
+
+    movie_repository.create_movie(title, director, rating)
+    return redirect(url_for('list_all_movies'))
 
 
 @app.get('/movies/search')
