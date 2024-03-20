@@ -7,16 +7,13 @@ app = Flask(__name__)
 # Get the movie repository singleton to use throughout the application
 movie_repository = get_movie_repository()
 
-
 @app.get('/')
 def index():
-    # print(movie_repository.get_all_movies())
     return render_template('index.html')
 
 movie_list = {}
 @app.get('/movies')
 def list_all_movies():
-    # TODO: Feature 1
     movie_list = movie_repository.get_all_movies()
     return render_template('list_all_movies.html', the_movie_list=movie_list)
 
@@ -53,7 +50,6 @@ def search_movies():
 
 @app.get('/movies/<int:movie_id>')
 def get_single_movie(movie_id: int):
-    # TODO: Feature 4
     # Grade Feature 4 for Jason Khotsombath
     current_movie = movie_repository.get_movie_by_id(movie_id)
 
@@ -69,6 +65,7 @@ def get_edit_movies_page(movie_id: int):
 @app.post('/movies/<int:movie_id>')
 def update_movie(movie_id: int):
     # TODO: Feature 5
+    # Jason Khotsombath accidently did feature 5
     title = request.form.get('title')
     director = request.form.get('director')
     rating = request.form.get('rating')
@@ -91,13 +88,9 @@ def update_movie(movie_id: int):
 @app.post('/movies/<int:movie_id>/delete')
 def delete_movie(movie_id: int):
     # TODO: Feature 6
+    # Jason Khotsombath accidently did feature 6
     if movie_id not in [movie.movie_id for _, movie in movie_repository.get_all_movies().items()]:
         abort(400)
-    # for movie_id_check in movie_repository._db:
-    #     if movie_id_check == movie_id:
-    #         break
-    #     else:
-    #         abort(404)
         
     movie_repository.delete_movie(movie_id)
     return redirect('/movies')
