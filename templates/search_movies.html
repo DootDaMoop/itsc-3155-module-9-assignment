@@ -6,4 +6,22 @@
 <h1 class="mb-5">Search Movie Ratings</h1>
 <p class="mb-3">Search for a movie rating below</p>
 <!-- TODO: Feature 3 -->
+<div class="container">
+<form method="get" action="/movies/search" class="mb-3">
+    <label>Search: </label>
+    <input type="text" name="search" id="search" class="form-control form-control-md mb-3">
+    <button type="submit" class="btn btn-primary form-control">Submit</button>
+</form>
+{% if search_active == False %}
+{% elif movie_instance %}
+    <div class="border border-dark border-primary border-3 rounded black">
+        <h6 class="mx-3">Movie: {{ movie_instance.title }}</p>
+        <h6 class="mx-3">Director: {{ movie_instance.director }}</p>
+        <h3 class="mx-3">Rating: {{ movie_instance.rating }}</h3>
+    </div>
+{% elif movie_instance == None %}
+    <p class="text-danger">Movie not found with that title.</p>
+{% endif %}
 {% endblock %}
+</div>
+
