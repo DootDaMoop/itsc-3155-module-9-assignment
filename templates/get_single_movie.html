@@ -3,6 +3,24 @@
 {% block title %}Movie Rating App | Movie{% endblock %}
 
 {% block body %}
-<h1 class="mb-5"></h1>
+
+{% if current_movie is none %}
+<h1 class="mb-2 text-center">Invalid Movie ID</h1>
+{% else %}
+<h1 class="mb-2 text-center">{{current_movie.title}}</h1>
 <!-- TODO: Feature 4 -->
+<div>
+    <h2 class="mb-2 text-center">By {{current_movie.director}}</h2>
+    <h3 class="text-center">Rating: {{current_movie.rating}}⭐</h3>
+</div>
+<div>
+    <form class="text-center mb-2" action="{{url_for('get_edit_movies_page', movie_id=current_movie.movie_id)}}" method="get">
+        <button class="btn btn-primary" type="submit">Edit</button>
+    </form>
+    <form class="text-center" action="{{url_for('delete_movie', movie_id=current_movie.movie_id)}}" method="post">
+        <button class="btn btn-warning" type="submit">Delete</button>
+    </form>
+</div>
+{% endif %}
+
 {% endblock %}

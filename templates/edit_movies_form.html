@@ -3,6 +3,28 @@
 {% block title %}Movie Rating App | Edit Movie{% endblock %}
 
 {% block body %}
-<h1 class="mb-5"></h1>
+{% if current_movie is none %}
+<h1 class="mt-5 text-center">Invalid Movie ID</h1>
+{% else %}
 <!-- TODO: Feature 5 -->
+<div class="text-center">
+    <h1>Editing {{current_movie.title}}</h1>
+    <form class="form-group" action="{{url_for('update_movie', movie_id=current_movie.movie_id)}}" method="post">
+        <label for="title">Title:
+            <input class="form-control" type="text" name="title" id="title" required></label><br><br>
+        <label for="director">Director:
+            <input class="form-control" type="text" name="director" id="director" required></label><br><br>
+        <label for="rating" class="form-label">Rating</label>
+        <select class="form-select" id="rating" name="rating" required>
+            <option value="" disabled selected>Choose a rating</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select><br><br>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+{% endif %}
 {% endblock %}
