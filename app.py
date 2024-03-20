@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, request, url_for, request
+from flask import Flask, redirect, render_template, request, url_for
 from src.repositories.movie_repository import get_movie_repository
 
 app = Flask(__name__)
